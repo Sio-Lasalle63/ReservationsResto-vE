@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="869.0" prefWidth="1047.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.medassi.reservationsrestaurant.controller.MainViewController">
+   <children>
+      <DatePicker fx:id="datePicker" layoutX="14.0" layoutY="69.0" />
+      <ComboBox fx:id="serviceComboBox" layoutX="14.0" layoutY="107.0" prefHeight="26.0" prefWidth="175.0" />
+      <Spinner fx:id="personnesSpinner" layoutX="14.0" layoutY="143.0" prefHeight="26.0" prefWidth="175.0" />
+      <Pane fx:id="sallePane" layoutX="233.0" layoutY="50.0" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: beige; -fx-border-color: purple; -fx-border-width: 3px; -fx-border-radius: 10px;" />
+      <Label alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="18.0" prefWidth="175.0" text="Réservations">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Separator layoutX="206.0" layoutY="9.0" orientation="VERTICAL" prefHeight="856.0" prefWidth="18.0" />
+      <Label alignment="TOP_CENTER" layoutX="545.0" layoutY="14.0" prefHeight="18.0" prefWidth="175.0" text="La salle">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <VBox alignment="BOTTOM_CENTER" layoutX="14.0" layoutY="345.0" prefHeight="200.0" prefWidth="185.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" style="-fx-background-color: LIGHTGRAY;" text="Table trop petite" textAlignment="CENTER">
+               <opaqueInsets>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Label alignment="CENTER" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" style="-fx-background-color: LIGHTGREEN;" text="Table parfaitement adaptée" textAlignment="CENTER">
+               <opaqueInsets>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Label alignment="CENTER" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" style="-fx-background-color: ORANGE;" text="1 place de trop" textAlignment="CENTER">
+               <opaqueInsets>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Label alignment="CENTER" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" style="-fx-background-color: YELLOW;" text="2 places de trop" textAlignment="CENTER">
+               <opaqueInsets>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Label alignment="CENTER" graphicTextGap="10.0" maxWidth="1.7976931348623157E308" style="-fx-background-color: CORNFLOWERBLUE;" text="+ de 2 places de trop" textAlignment="CENTER">
+               <opaqueInsets>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

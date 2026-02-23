@@ -1,0 +1,334 @@
+{
+  "tables": [
+    {
+      "numero": 1,
+      "capacite": 4,
+      "largeur": 100.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "dae23c48-2d88-4bc6-9db9-bdf3871d87ce",
+      "positionX": 520.0,
+      "positionY": 320.0
+    },
+    {
+      "numero": 2,
+      "capacite": 8,
+      "largeur": 200.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "5a370673-b03f-452e-a0fe-90e5d286fbca",
+      "positionX": 40.0,
+      "positionY": 680.0
+    },
+    {
+      "numero": 3,
+      "capacite": 8,
+      "largeur": 200.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "48ba89c2-596d-443a-8254-97d2bb13636a",
+      "positionX": 300.0,
+      "positionY": 680.0
+    },
+    {
+      "numero": 4,
+      "capacite": 6,
+      "largeur": 100.0,
+      "hauteur": 100.0,
+      "forme": "ROND",
+      "id": "88bd95d5-64ed-481f-b141-aea9168eddd7",
+      "positionX": 240.0,
+      "positionY": 100.0
+    },
+    {
+      "numero": 6,
+      "capacite": 8,
+      "largeur": 200.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "dcb7f01e-8ac3-4532-872f-35588c20fec5",
+      "positionX": 580.0,
+      "positionY": 680.0
+    },
+    {
+      "numero": 7,
+      "capacite": 4,
+      "largeur": 80.0,
+      "hauteur": 80.0,
+      "forme": "ROND",
+      "id": "t7",
+      "positionX": 80.0,
+      "positionY": 200.0
+    },
+    {
+      "numero": 8,
+      "capacite": 4,
+      "largeur": 80.0,
+      "hauteur": 80.0,
+      "forme": "ROND",
+      "id": "t8",
+      "positionX": 80.0,
+      "positionY": 80.0
+    },
+    {
+      "numero": 9,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "t9",
+      "positionX": 600.0,
+      "positionY": 80.0
+    },
+    {
+      "numero": 10,
+      "capacite": 4,
+      "largeur": 100.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "t10",
+      "positionX": 360.0,
+      "positionY": 320.0
+    },
+    {
+      "numero": 11,
+      "capacite": 4,
+      "largeur": 100.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "t11",
+      "positionX": 200.0,
+      "positionY": 320.0
+    },
+    {
+      "numero": 15,
+      "capacite": 4,
+      "largeur": 100.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "t15",
+      "positionX": 660.0,
+      "positionY": 340.0
+    },
+    {
+      "numero": 17,
+      "capacite": 8,
+      "largeur": 200.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "t17",
+      "positionX": 280.0,
+      "positionY": 200.0
+    },
+    {
+      "numero": 18,
+      "capacite": 4,
+      "largeur": 100.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "t18",
+      "positionX": 40.0,
+      "positionY": 320.0
+    },
+    {
+      "numero": 19,
+      "capacite": 6,
+      "largeur": 150.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "t19",
+      "positionX": 560.0,
+      "positionY": 200.0
+    },
+    {
+      "numero": 23,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "87954971-7f1f-42f9-ae5b-e2bf75326841",
+      "positionX": 540.0,
+      "positionY": 440.0
+    },
+    {
+      "numero": 24,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "bc451478-e959-4612-8236-204d8a985823",
+      "positionX": 440.0,
+      "positionY": 440.0
+    },
+    {
+      "numero": 25,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "39330d20-fb0f-47da-8bd3-9a1bd58fb688",
+      "positionX": 340.0,
+      "positionY": 440.0
+    },
+    {
+      "numero": 26,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "4586de2a-4af9-4909-b117-e230b7138aa8",
+      "positionX": 240.0,
+      "positionY": 440.0
+    },
+    {
+      "numero": 27,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "53a6f347-5576-449d-99c4-685e08f0273c",
+      "positionX": 140.0,
+      "positionY": 440.0
+    },
+    {
+      "numero": 28,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "0aaedc80-13f0-4802-a0e1-0c9c013fafa9",
+      "positionX": 40.0,
+      "positionY": 440.0
+    },
+    {
+      "numero": 29,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "e830e4cb-035c-4c8c-a866-a9233624fef7",
+      "positionX": 640.0,
+      "positionY": 560.0
+    },
+    {
+      "numero": 30,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "f062312e-7201-43c7-b406-8bfcea0a506d",
+      "positionX": 540.0,
+      "positionY": 560.0
+    },
+    {
+      "numero": 31,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "f1b0d422-5b91-47bf-9d70-3dc7f31524be",
+      "positionX": 440.0,
+      "positionY": 560.0
+    },
+    {
+      "numero": 32,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "664ee38c-2986-4050-a5e9-33c56e1cf139",
+      "positionX": 340.0,
+      "positionY": 560.0
+    },
+    {
+      "numero": 33,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "cddcb98f-3759-42c4-ace7-7f6b2091f834",
+      "positionX": 240.0,
+      "positionY": 560.0
+    },
+    {
+      "numero": 34,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "61dca7bd-9311-4118-b2be-972d08812018",
+      "positionX": 140.0,
+      "positionY": 560.0
+    },
+    {
+      "numero": 35,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "b24e8cdf-d950-4c7e-842e-2ac20d4f3fc4",
+      "positionX": 40.0,
+      "positionY": 560.0
+    },
+    {
+      "numero": 36,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "62bf91d1-00f4-4199-bbb3-9b30a1495893",
+      "positionX": 720.0,
+      "positionY": 440.0
+    },
+    {
+      "numero": 37,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "df819523-94e8-473c-8095-ca0dd77da14c",
+      "positionX": 640.0,
+      "positionY": 440.0
+    },
+    {
+      "numero": 38,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "6695526f-a8f0-4968-a1a8-c9cc34d3c6b2",
+      "positionX": 720.0,
+      "positionY": 560.0
+    },
+    {
+      "numero": 39,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "b4375ab9-e067-4d07-b9ac-7e9a4932374c",
+      "positionX": 500.0,
+      "positionY": 80.0
+    },
+    {
+      "numero": 37,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "08c0cba8-cd54-4845-8470-6ce928b19266",
+      "positionX": 700.0,
+      "positionY": 80.0
+    },
+    {
+      "numero": 38,
+      "capacite": 2,
+      "largeur": 50.0,
+      "hauteur": 50.0,
+      "forme": "RECTANGLE",
+      "id": "dfd4af7e-0de0-44c7-8bf7-bd86a9947c70",
+      "positionX": 400.0,
+      "positionY": 80.0
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "idReservation": "4281716b-a5e1-4c92-9c31-28b59a78fdf7",
+    "idTable": "39330d20-fb0f-47da-8bd3-9a1bd58fb688",
+    "dateReservation": "2026-02-18",
+    "service": "MIDI",
+    "nombrePersonnes": 2,
+    "nomClient": "Anthony",
+    "commentaire": ""
+  },
+  {
+    "idReservation": "f74668e5-d21c-48e5-9aee-28f748c8a0ea",
+    "idTable": "48ba89c2-596d-443a-8254-97d2bb13636a",
+    "dateReservation": "2026-02-18",
+    "service": "MIDI",
+    "nombrePersonnes": 2,
+    "nomClient": "Gilbert",
+    "commentaire": ""
+  },
+  {
+    "idReservation": "da95b726-62ed-47e1-a599-87e60e36775a",
+    "idTable": "t17",
+    "dateReservation": "2026-02-19",
+    "service": "MIDI",
+    "nombrePersonnes": 8,
+    "nomClient": "Lulu",
+    "commentaire": ""
+  }
+]
