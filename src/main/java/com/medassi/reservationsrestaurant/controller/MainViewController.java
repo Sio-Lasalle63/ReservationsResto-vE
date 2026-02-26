@@ -4,6 +4,7 @@ import com.medassi.reservationsrestaurant.model.Reservation;
 import com.medassi.reservationsrestaurant.model.Service;
 import com.medassi.reservationsrestaurant.model.Salle;
 import com.medassi.reservationsrestaurant.model.Table;
+import com.medassi.reservationsrestaurant.persistence.GestionDonnees;
 import java.net.URL;
 import java.time.LocalDate;
 import javafx.fxml.FXML;
@@ -16,8 +17,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.Background;
-import javafx.util.Callback;
 
 /**
  *
@@ -58,12 +57,16 @@ public class MainViewController implements Initializable {
                 if (ld.isBefore(jourdui)) {
                     setStyle("-fx-background-color: red;");
                     setDisable(true);
-                    
                 }
             }
-
         });
-
+        datePicker.setValue(LocalDate.now());
+        datePicker.valueProperty().addListener((o,oldV,newV) -> handleCheckAvailability());
+        serviceComboBox.valueProperty().addListener((o,oldV,newV) -> handleCheckAvailability());
+        personnesSpinner.valueProperty().addListener((o,oldV,newV) -> handleCheckAvailability());
+        this.salle = GestionDonnees.chargerPlanSalle() ;
+        this.allReservations = GestionDonnees.chargerReservations() ;
+        redrawSalle();
     }
 
     /**
@@ -79,6 +82,7 @@ public class MainViewController implements Initializable {
      * Dessine ou redessine l'ensemble des tables dans le Pane graphique.
      */
     private void redrawSalle() {
+        
     }
 
     /**
@@ -86,6 +90,7 @@ public class MainViewController implements Initializable {
      * réservations.
      */
     private void handleCheckAvailability() {
+        System.out.println("CheckAvailability");
     }
 
     /**
