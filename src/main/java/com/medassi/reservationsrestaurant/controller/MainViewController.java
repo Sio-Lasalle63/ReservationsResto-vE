@@ -5,6 +5,7 @@ import com.medassi.reservationsrestaurant.model.Service;
 import com.medassi.reservationsrestaurant.model.Salle;
 import com.medassi.reservationsrestaurant.model.Table;
 import java.net.URL;
+import java.time.LocalDate;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.*;
@@ -13,7 +14,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Background;
+import javafx.util.Callback;
 
 /**
  *
@@ -43,6 +47,23 @@ public class MainViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        serviceComboBox.setItems(FXCollections.observableArrayList(Service.values()));
+        serviceComboBox.getSelectionModel().selectFirst();
+        personnesSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20, 2));
+        datePicker.setDayCellFactory((DatePicker param) -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate ld, boolean bln) {
+                super.updateItem(ld, bln);
+                LocalDate jourdui = LocalDate.now();
+                if (ld.isBefore(jourdui)) {
+                    setStyle("-fx-background-color: red;");
+                    setDisable(true);
+                    
+                }
+            }
+
+        });
+
     }
 
     /**
@@ -76,6 +97,7 @@ public class MainViewController implements Initializable {
 
     /**
      * Affiche un dialog modal pour créer une nouvelle réservation.
+     *
      * @param table l'objet Table sélectionné pour la réservation
      */
     private void showReservationDialog(Table table) {
