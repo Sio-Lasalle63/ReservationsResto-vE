@@ -19,6 +19,8 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -110,8 +112,8 @@ public class MainViewController implements Initializable {
             gTable.setLayoutY(uneTable.getPositionY());
             this.sallePane.getChildren().add(gTable);
             gTable.setUserData(uneTable);
-            gTable.setOnMouseEntered((event) -> shapeTable.setFill(Paint.valueOf("cyan")) );
-            gTable.setOnMouseExited((event) -> shapeTable.setFill(Paint.valueOf("LEMONCHIFFON")) );
+            gTable.setOnMouseEntered((event) -> shapeTable.setStroke(Paint.valueOf("BLACK")) );
+            gTable.setOnMouseExited((event) -> shapeTable.setStroke(Paint.valueOf("VIOLET")) );
             gTable.setOnMouseClicked((event) -> handleTableClick(event));
            
         }
@@ -124,6 +126,16 @@ public class MainViewController implements Initializable {
      */
     private void handleCheckAvailability() {
         System.out.println("CheckAvailability");
+        for( Node node : this.sallePane.getChildren()){
+            Group leGroupe = (Group)node ;
+            Table laTable=  (Table) leGroupe.getUserData() ;
+            Shape laShape = (Shape) leGroupe.getChildren().get(0) ;
+            Text leText = (Text) leGroupe.getChildren().get(1) ;
+            if( laTable.getCapacite() < personnesSpinner.getValue() ){
+                laShape.setFill(Color.CRIMSON);
+            }
+        }
+        
     }
 
     /**
