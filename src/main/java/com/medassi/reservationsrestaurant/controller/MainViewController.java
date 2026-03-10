@@ -87,9 +87,9 @@ public class MainViewController implements Initializable {
         if (table.getForme() == Forme.ROND) {
             text.setTranslateX(-text.getBoundsInLocal().getWidth() / 2);
             text.setTranslateY(text.getBoundsInLocal().getHeight() / 2);
-        }else{
-            text.setTranslateX(table.getLargeur()/2);
-            text.setTranslateY(table.getHauteur()/2);
+        } else {
+            text.setTranslateX(table.getLargeur() / 2);
+            text.setTranslateY(table.getHauteur() / 2);
         }
     }
 
@@ -112,10 +112,10 @@ public class MainViewController implements Initializable {
             gTable.setLayoutY(uneTable.getPositionY());
             this.sallePane.getChildren().add(gTable);
             gTable.setUserData(uneTable);
-            gTable.setOnMouseEntered((event) -> shapeTable.setStroke(Paint.valueOf("BLACK")) );
-            gTable.setOnMouseExited((event) -> shapeTable.setStroke(Paint.valueOf("VIOLET")) );
+            gTable.setOnMouseEntered((event) -> shapeTable.setStroke(Paint.valueOf("BLACK")));
+            gTable.setOnMouseExited((event) -> shapeTable.setStroke(Paint.valueOf("VIOLET")));
             gTable.setOnMouseClicked((event) -> handleTableClick(event));
-           
+
         }
         handleCheckAvailability();
     }
@@ -126,16 +126,25 @@ public class MainViewController implements Initializable {
      */
     private void handleCheckAvailability() {
         System.out.println("CheckAvailability");
-        for( Node node : this.sallePane.getChildren()){
-            Group leGroupe = (Group)node ;
-            Table laTable=  (Table) leGroupe.getUserData() ;
-            Shape laShape = (Shape) leGroupe.getChildren().get(0) ;
-            Text leText = (Text) leGroupe.getChildren().get(1) ;
-            if( laTable.getCapacite() < personnesSpinner.getValue() ){
+        for (Node node : this.sallePane.getChildren()) {
+            Group leGroupe = (Group) node;
+            Table laTable = (Table) leGroupe.getUserData();
+            Shape laShape = (Shape) leGroupe.getChildren().get(0);
+            Text leText = (Text) leGroupe.getChildren().get(1);
+            int diff = laTable.getCapacite() - personnesSpinner.getValue();
+            if (diff < 0) {
                 laShape.setFill(Color.CRIMSON);
+            } else if (diff == 0) {
+                laShape.setFill(Color.LIGHTGREEN);
+            } else if (diff == 1) {
+                laShape.setFill(Color.LIGHTSALMON);
+            } else if (diff == 2) {
+                laShape.setFill(Color.LIGHTGOLDENRODYELLOW);
+            } else {
+                laShape.setFill(Color.LIGHTBLUE);
             }
         }
-        
+
     }
 
     /**
@@ -143,9 +152,23 @@ public class MainViewController implements Initializable {
      * réservation.
      */
     private void handleTableClick(MouseEvent event) {
-        Group groupClicked = (Group) event.getSource() ;
+        Group groupClicked = (Group) event.getSource();
         Table laTable = (Table) groupClicked.getUserData();
-        System.out.println("Clique sur table :" + laTable.getNumero());
+        Shape laShape = (Shape) groupClicked.getChildren().get(0);
+        Text leText = (Text) groupClicked.getChildren().get(1);
+        Color c = (Color) laShape.getFill();
+
+        int diff = laTable.getCapacite() - personnesSpinner.getValue();
+        if (diff < 0) {
+            Alert a = new Alert(Alert.AlertType.NONE);
+            a.setTitle("Réservation d'une table");
+            a.setAlertType(Alert.AlertType.ERROR);
+            a.setContentText("Cette table de " + laTable.getCapacite() + " personnes est trop petite!");
+            a.showAndWait();
+        } else {
+            showReservationDialog(laTable);
+        }
+
     }
 
     /**
