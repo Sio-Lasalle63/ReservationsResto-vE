@@ -23,6 +23,7 @@ import java.util.UUID;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
@@ -92,12 +93,13 @@ public class MainViewController implements Initializable {
      * @param table l'objet métier Table contenant les dimensions et la forme
      */
     private void centerTextOnTable(Text text, Table table) {
+        text.setTextOrigin(VPos.CENTER);
         if (table.getForme() == Forme.ROND) {
-            text.setTranslateX(-text.getBoundsInLocal().getWidth() / 2);
-            text.setTranslateY(text.getBoundsInLocal().getHeight() / 2);
+            text.setX(0 - text.getLayoutBounds().getWidth() / 2);
+            text.setY(0);
         } else {
-            text.setTranslateX(table.getLargeur() / 2);
-            text.setTranslateY(table.getHauteur() / 2);
+            text.setX(table.getLargeur() / 2 - text.getLayoutBounds().getWidth() / 2);
+            text.setY(table.getHauteur() / 2);
         }
     }
 
@@ -105,6 +107,7 @@ public class MainViewController implements Initializable {
      * Dessine ou redessine l'ensemble des tables dans le Pane graphique.
      */
     private void redrawSalle() {
+        sallePane.getChildren().clear();
         for (Table uneTable : this.salle.getTables()) {
             Group gTable = new Group();
             Shape shapeTable = (uneTable.getForme() == Forme.RECTANGLE)
@@ -142,19 +145,13 @@ public class MainViewController implements Initializable {
             int diff = laTable.getCapacite() - personnesSpinner.getValue();
             //si elle est reservé -> idTable== et laDate== et service==
             boolean isReserved = false;
+            String nomClient = "";
             for (Reservation r : allReservations) {
                 if (r.getIdTable().equals(laTable.getId())
                         && r.getDateReservation().isEqual(datePicker.getValue())
                         && r.getService() == serviceComboBox.getValue()) {
                     isReserved = true;
-                    // J'affiche le nom du client
-                    // Je met une couleur noir en fill
-                    // Je met une couleur blanc pour le texte
-                    leText.setText(r.getNomClient());
-                    centerTextOnTable(leText, laTable);
-                    laShape.setFill(Color.DARKGREY);
-                    leText.setFill(Color.WHITE);
-                    System.out.println("Res : " + r.getIdReservation());
+                    nomClient = r.getNomClient();
                 }
             }
             if (!isReserved) {
@@ -169,10 +166,19 @@ public class MainViewController implements Initializable {
                 } else {
                     laShape.setFill(Color.LIGHTBLUE);
                 }
-                leText.setText("");
+                leText.setText(laTable.getCapacite() + " p.");
+                leText.setFill(Color.BLACK);
+                centerTextOnTable(leText, laTable);
+            } else {
+                // J'affiche le nom du client
+                // Je met une couleur noir en fill
+                // Je met une couleur blanc pour le texte
+                leText.setText(nomClient);
+                centerTextOnTable(leText, laTable);
+                laShape.setFill(Color.DARKGREY);
+                leText.setFill(Color.WHITE);
             }
         }
-
     }
 
     /**
@@ -224,15 +230,15 @@ public class MainViewController implements Initializable {
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.FINISH, ButtonType.CANCEL);
         dialog.getDialogPane().setContent(vbox);
         dialog.setResultConverter(button -> {
-            if (tfNomClient.getText().strip().isBlank()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Le nom du client est obligatoire !!!");
-                alert.showAndWait();
-                return null;
-            } else {
-                if (button == ButtonType.FINISH) {
+            Reservation resARetourner = null;
+            if (button == ButtonType.FINISH) {
+                if (tfNomClient.getText().strip().isBlank()) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Le nom du client est obligatoire !!!");
+                    alert.showAndWait();
+                } else {
                     String numRes = "RES-" + UUID.randomUUID().toString();
-                    Reservation r = new Reservation(
+                    resARetourner = new Reservation(
                             numRes,
                             table.getId(),
                             datePicker.getValue(),
@@ -240,11 +246,12 @@ public class MainViewController implements Initializable {
                             personnesSpinner.getValue(),
                             tfNomClient.getText().strip(),
                             tfCommentaire.getText().strip());
-                    return r;
-                } else {
-                    return null;
+
                 }
+            } else {
+                return null;
             }
+            return resARetourner;
         });
         Optional<Reservation> optReservation = dialog.showAndWait();
         if (optReservation.isPresent()) {
