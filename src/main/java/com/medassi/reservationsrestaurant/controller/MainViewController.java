@@ -7,7 +7,9 @@ import com.medassi.reservationsrestaurant.model.Salle;
 import com.medassi.reservationsrestaurant.model.Table;
 import com.medassi.reservationsrestaurant.persistence.GestionDonnees;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.*;
@@ -15,16 +17,21 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javax.swing.text.DateFormatter;
 
 /**
  *
@@ -74,6 +81,7 @@ public class MainViewController implements Initializable {
         personnesSpinner.valueProperty().addListener((o, oldV, newV) -> handleCheckAvailability());
         this.salle = GestionDonnees.chargerPlanSalle();
         this.allReservations = GestionDonnees.chargerReservations();
+        serviceComboBox.setTooltip(new Tooltip("Service du midi ou du soir"));
         redrawSalle();
     }
 
@@ -132,16 +140,36 @@ public class MainViewController implements Initializable {
             Shape laShape = (Shape) leGroupe.getChildren().get(0);
             Text leText = (Text) leGroupe.getChildren().get(1);
             int diff = laTable.getCapacite() - personnesSpinner.getValue();
-            if (diff < 0) {
-                laShape.setFill(Color.CRIMSON);
-            } else if (diff == 0) {
-                laShape.setFill(Color.LIGHTGREEN);
-            } else if (diff == 1) {
-                laShape.setFill(Color.LIGHTSALMON);
-            } else if (diff == 2) {
-                laShape.setFill(Color.LIGHTGOLDENRODYELLOW);
-            } else {
-                laShape.setFill(Color.LIGHTBLUE);
+            //si elle est reservé -> idTable== et laDate== et service==
+            boolean isReserved = false;
+            for (Reservation r : allReservations) {
+                if (r.getIdTable().equals(laTable.getId())
+                        && r.getDateReservation().isEqual(datePicker.getValue())
+                        && r.getService() == serviceComboBox.getValue()) {
+                    isReserved = true;
+                    // J'affiche le nom du client
+                    // Je met une couleur noir en fill
+                    // Je met une couleur blanc pour le texte
+                    leText.setText(r.getNomClient());
+                    centerTextOnTable(leText, laTable);
+                    laShape.setFill(Color.DARKGREY);
+                    leText.setFill(Color.WHITE);
+                    System.out.println("Res : " + r.getIdReservation());
+                }
+            }
+            if (!isReserved) {
+                if (diff < 0) {
+                    laShape.setFill(Color.CRIMSON);
+                } else if (diff == 0) {
+                    laShape.setFill(Color.LIGHTGREEN);
+                } else if (diff == 1) {
+                    laShape.setFill(Color.LIGHTSALMON);
+                } else if (diff == 2) {
+                    laShape.setFill(Color.LIGHTGOLDENRODYELLOW);
+                } else {
+                    laShape.setFill(Color.LIGHTBLUE);
+                }
+                leText.setText("");
             }
         }
 
@@ -166,7 +194,10 @@ public class MainViewController implements Initializable {
             a.setContentText("Cette table de " + laTable.getCapacite() + " personnes est trop petite!");
             a.showAndWait();
         } else {
-            showReservationDialog(laTable);
+            if (c != Color.DARKGREY) {
+                //Si elle n'est pas reserver alors
+                showReservationDialog(laTable);
+            }
         }
 
     }
@@ -177,5 +208,51 @@ public class MainViewController implements Initializable {
      * @param table l'objet Table sélectionné pour la réservation
      */
     private void showReservationDialog(Table table) {
+        Dialog<Reservation> dialog = new Dialog<>();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MM yyyy");
+        dialog.setTitle("Réservation");
+        dialog.setHeaderText("Saisir la réservation pour " + table.getCapacite() + " p.");
+        Label labelDate = new Label("Le " + dtf.format(datePicker.getValue()));
+        Label labelNumTable = new Label("Table : " + table.getNumero());
+        Label labelService = new Label("Service du " + serviceComboBox.getValue());
+        TextField tfNomClient = new TextField();
+        tfNomClient.setPromptText("Nom du client");
+        TextField tfCommentaire = new TextField();
+        tfCommentaire.setPromptText("Commentaire éventuel");
+        VBox vbox = new VBox(labelNumTable, labelDate, labelService, tfNomClient, tfCommentaire);
+        vbox.setSpacing(10);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.FINISH, ButtonType.CANCEL);
+        dialog.getDialogPane().setContent(vbox);
+        dialog.setResultConverter(button -> {
+            if (tfNomClient.getText().strip().isBlank()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Le nom du client est obligatoire !!!");
+                alert.showAndWait();
+                return null;
+            } else {
+                if (button == ButtonType.FINISH) {
+                    String numRes = "RES-" + UUID.randomUUID().toString();
+                    Reservation r = new Reservation(
+                            numRes,
+                            table.getId(),
+                            datePicker.getValue(),
+                            serviceComboBox.getValue(),
+                            personnesSpinner.getValue(),
+                            tfNomClient.getText().strip(),
+                            tfCommentaire.getText().strip());
+                    return r;
+                } else {
+                    return null;
+                }
+            }
+        });
+        Optional<Reservation> optReservation = dialog.showAndWait();
+        if (optReservation.isPresent()) {
+            Reservation r = optReservation.get();
+            allReservations.add(r);
+            GestionDonnees.sauvegarderReservations(allReservations);
+            handleCheckAvailability();
+        }
+
     }
 }
